@@ -1,0 +1,19 @@
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+.vscode/
+.idea/.n.cache/
+*.log
+*.db
+*.sqlite3
+# Local backups and data
+backups/
+data/
+qdrant-inspect/
+check_duplicate_upload.py

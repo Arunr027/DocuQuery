@@ -1,0 +1,14 @@
+[
+  {
+    "question": "What retrieval methods does DocuQuery use?",
+    "relevant_chunk_ids": ["Arun GenAI.pdf#3"]
+  },
+  {
+    "question": "Which reranking model does DocuQuery use?",
+    "relevant_chunk_ids": ["Arun GenAI.pdf#3"]
+  },
+  {
+    "question": "How does DocuQuery evaluate answer quality?",
+    "relevant_chunk_ids": ["Arun GenAI.pdf#3"]
+  }
+]

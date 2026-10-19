@@ -1,0 +1,13 @@
+
+fastapi
+uvicorn[standard]
+pydantic-settings
+google-genai
+qdrant-client
+redis
+pypdf
+python-multipart
+httpx
+pytest
+sentence-transformers
+rank-bm25

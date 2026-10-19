@@ -1,0 +1,55 @@
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: docuquery-api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      QDRANT_URL: http://qdrant:6333
+      REDIS_URL: redis://redis:6379/0
+      HF_HOME: /app/.cache/huggingface
+    volumes:
+      - ./app:/app/app
+      - hf_cache:/app/.cache/huggingface
+    depends_on:
+      - qdrant
+      - redis
+    restart: unless-stopped
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: docuquery-qdrant
+    ports:
+      - "6336:6333"
+      - "6337:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: docuquery-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  qdrant_data:
+    external: true
+    name: docuquery_qdrant_data
+  redis_data:
+    name: docuquery_redis_data
+  hf_cache:
+    name: docuquery_hf_cache
